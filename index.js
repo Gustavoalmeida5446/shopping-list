@@ -67,6 +67,7 @@ document.getElementById('save-btn').addEventListener('click', function () {
     console.log(arr);
     console.log(map);
     localStorage.setItem('state', JSON.stringify(map))
+    alert('saved succcesfully')
 })
 
 function clear() {
