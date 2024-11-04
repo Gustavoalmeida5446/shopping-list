@@ -1,0 +1,25 @@
+body {
+    background-color: black;
+    color: white;
+    margin: 20px;
+    font-family: sans-serif;
+}
+
+li {
+    list-style: none;
+    padding: 5px;
+    font-weight: bold;
+}
+
+li-marked {
+    color: gray;
+    text-decoration-line: line-through;
+}
+
+.checked {
+
+    color: gray;
+    text-decoration: line-through;
+
+}
+
