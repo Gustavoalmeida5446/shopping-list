@@ -1,78 +1,80 @@
-const state = localStorage.getItem('state')
-const list = JSON.parse(state) ?? []
+const itemInput = document.getElementById("input");
 
+function loadInitialState() {
+  const state = localStorage.getItem("state");
+  const list = JSON.parse(state) ?? [];
+  list.forEach((element) => {
+    addItemToUI(element);
+  });
+}
 
-
-
-const item = document.getElementById('input')
-item.addEventListener('keydown', (event) => {
-    if (event.key === 'Enter') {
-        newItem()
-        item.value = '';
+function initializeListeners() {
+  itemInput.addEventListener("keydown", (event) => {
+    if (event.key === "Enter") {
+      addItemFromInput();
+      itemInput.value = "";
     }
-});
+  });
 
-function addItem({ label, isChecked }) {
-    const newItem = document.createElement('li');
-    // newItem.textContent = item.value;
-    document.getElementById('list').appendChild(newItem);
+  document
+    .getElementById("add-item-btn")
+    .addEventListener("click", addItemFromInput);
 
-    const checkbox = document.createElement('input');
-    checkbox.type = 'checkbox';
-    checkbox.checked = isChecked
-    // newItem.appendChild(checkbox);
+  document
+    .getElementById("save-btn")
+    .addEventListener("click", saveAllItemsToLocalStorage);
 
-    // const span = document.createElement('span');
-    // span.textContent = item.value;
-    // newItem.appendChild(span);
-
-    newItem.append(checkbox, label)
-
-
-    checkbox.addEventListener('change', () => {
-        if (checkbox.checked) {
-            newItem.classList.add('checked');
-        } else {
-            newItem.classList.remove('checked');
-        }
-    })
+  document.getElementById("clear-btn").addEventListener("click", clearAll);
 }
 
-document.getElementById('btn').addEventListener('click', newItem)
-
-
-
-
-list.forEach(element => {
-    addItem(element)
-});
-
-function newItem() {
-    addItem({ label: item.value, isChecked: false })
-    item.value = '';
+function saveAllItemsToLocalStorage() {
+  const listHTML = document.getElementById("list");
+  const listItems = Array.from(listHTML.children).map(function (el) {
+    const label = el.innerText;
+    const checkbox = el.firstChild.checked;
+    return {
+      label: label,
+      isChecked: checkbox,
+    };
+  });
+  localStorage.setItem("state", JSON.stringify(listItems));
+  alert("saved succcesfully");
 }
 
-document.getElementById('save-btn').addEventListener('click', function () {
-    // console.log(document.getElementById('list'))
-    const savedItems = document.getElementById('list')
-    const arr = Array.from(savedItems.children)
-    const map = arr.map(function (el) {
-        const label = el.innerText
-        const checkbox = el.firstChild.checked
-        return {
-            label: label,
-            isChecked: checkbox
-        }
-    });
-    console.log(arr);
-    console.log(map);
-    localStorage.setItem('state', JSON.stringify(map))
-    alert('saved succcesfully')
-})
+function addItemToUI({ label, isChecked }) {
+  const listItem = document.createElement("li");
+  document.getElementById("list").appendChild(listItem);
 
-function clear() {
-    localStorage.clear()
-    document.getElementById('list').replaceChildren('')
+  const checkbox = document.createElement("input");
+  checkbox.type = "checkbox";
+  checkbox.checked = isChecked;
+
+  listItem.append(checkbox, label);
+
+  setCheckboxClasses({ checkbox, listItem });
+
+  checkbox.addEventListener("change", () => {
+    setCheckboxClasses({ checkbox, listItem });
+  });
 }
 
-document.getElementById('clear-btn').addEventListener('click', clear)
+function setCheckboxClasses({ checkbox, listItem }) {
+  if (checkbox.checked) {
+    listItem.classList.add("checked");
+  } else {
+    listItem.classList.remove("checked");
+  }
+}
+
+function addItemFromInput() {
+  addItemToUI({ label: itemInput.value, isChecked: false });
+  itemInput.value = "";
+}
+
+function clearAll() {
+  localStorage.clear();
+  document.getElementById("list").replaceChildren("");
+}
+
+loadInitialState();
+initializeListeners();
