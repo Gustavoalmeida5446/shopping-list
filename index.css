@@ -17,3 +17,8 @@ li {
 span {
     margin: 10;
 }
+
+input[type="checkbox"]{
+
+    margin-right: 10px;
+}
