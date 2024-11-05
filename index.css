@@ -1,21 +1,19 @@
-body {
-    margin-top: 20px;
-    padding-top: 100px;
-}
-
 li {
     list-style: none;
-    padding: 5px;
     font-weight: bold;
 }
 
-li-marked {
+/* li-marked {
     color: gray;
     text-decoration-line: line-through;
-}
+} */
 
 .checked {
 
     color: gray;
     text-decoration: line-through;
+}
+
+span {
+    margin: 10;
 }
