@@ -2,23 +2,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>todo</title>
+    <title>Shopping List</title>
     <link rel="stylesheet" href="index.css">
-</head>
-<body>
-    <h1>Shopping list</h1>
-    <div>
-        <p>add item:</p>
-        <input type="text" id="input" />
-        <button id="btn">add</button> 
-        <button id="save-btn">save</button> 
-        <button id="clear-btn">clear</button> 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css">
 
-    </div>
-    <div>
-        <ul id="list">
+</head>
+<body class="container is-fluid mt-5">
+<div class="container">
+<article class="panel is-primary pb-6">
+    <h1 class="panel-heading">Shopping list</h1>
+    <section class="section is-primary">
+        <input type="text" id="input" class="input is-primary block" placeholder="add item"/>
+        <button id="btn" class="button is-primary">add</button> 
+        <button id="save-btn" class="button is-info">save</button> 
+        <button id="clear-btn" class="button is-warning">clear</button> 
+
+    </section>
+    <div class="content">
+        <ul id="list" class="block">
         </ul>
     </div>
+</article>
+</div>
     <script src="index.js"></script>
 </body>
 </html>
