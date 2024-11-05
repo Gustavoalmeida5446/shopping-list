@@ -12,7 +12,6 @@ function initializeListeners() {
   itemInput.addEventListener("keydown", (event) => {
     if (event.key === "Enter") {
       addItemFromInput();
-      itemInput.value = "";
     }
   });
 
