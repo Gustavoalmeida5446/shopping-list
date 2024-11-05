@@ -8,7 +8,7 @@
 
 </head>
 <body class="container is-fluid mt-5">
-<div class="container">
+
 <article class="panel is-primary pb-6">
     <h1 class="panel-heading">Shopping list</h1>
     <section class="section is-primary">
@@ -16,12 +16,17 @@
         <button id="add-item-btn" class="button is-primary">Add item</button>
         <button id="save-btn" class="button is-info">Save list</button>
         <button id="clear-btn" class="button is-warning">Clear list</button>
-
     </section>
-    <div class="notification is-success">
-        List saved succesfully!
-      </div>
-    <div class="content">
+
+    <div class="container is-fluid">
+        <div class="container">
+            <div class="notification is-info is-hidden">
+                <button class="delete"></button>
+                List saved succesfully!
+            </div>
+        </div>
+
+    <div class="content mt-5">
         <ul id="list" class="block">
         </ul>
     </div>

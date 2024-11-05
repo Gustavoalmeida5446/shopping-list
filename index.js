@@ -37,7 +37,7 @@ function saveAllItemsToLocalStorage() {
     };
   });
   localStorage.setItem("state", JSON.stringify(listItems));
-  alert("saved succcesfully");
+//   alert("saved succcesfully");
 }
 
 function addItemToUI({ label, isChecked }) {
@@ -77,3 +77,13 @@ function clearAll() {
 
 loadInitialState();
 initializeListeners();
+
+const closeNotificationButton = document.querySelector('.delete')
+
+closeNotificationButton.addEventListener('click', () => {
+    closeNotificationButton.parentElement.classList.add('is-hidden')
+})
+
+document.getElementById("save-btn").addEventListener("click", () => {
+    document.querySelector('.notification').classList.remove('is-hidden')
+})

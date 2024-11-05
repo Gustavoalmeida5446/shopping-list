@@ -3,11 +3,6 @@ li {
     font-weight: bold;
 }
 
-/* li-marked {
-    color: gray;
-    text-decoration-line: line-through;
-} */
-
 .checked {
 
     color: gray;
